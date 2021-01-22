@@ -50,7 +50,6 @@ def insert_many(conn, items, table_name):
     table_name : str
     conn : dataset.persistence.database.Database
     """
-    # TODO: check what happens if 1+ records can be inserted but 1 fails
     table = conn.load_table(table_name)
     try:
         for x in items:
@@ -60,31 +59,6 @@ def insert_many(conn, items, table_name):
         print('At least one in {} was already stored in table "{}".\nOriginal '
               'Exception raised: {}'
               .format([x['dt'] for x in items], table.table.name, e))
-
-
-def select_one(conn, name, table_name):
-    """Select a single item in a table.
-
-    The dataset library returns a result as an OrderedDict.
-
-    Parameters
-    ----------
-    name : str
-        name of the record to look for in the table
-    table_name : str
-    conn : dataset.persistence.database.Database
-
-    Raises
-    ------
-    mvc_exc.ItemNotStored: if the record is not stored in the table.
-    """
-    table = conn.load_table(table_name)
-    row = table.find_one(name=name)
-    if row is not None:
-        return dict(row)
-    else:
-        raise mvc_exc.ItemNotStored(
-            'Can\'t read "{}" because it\'s not stored in table "{}"'.format(name, table.table.name))
 
 #Read
 def select_all(conn, table_name):
