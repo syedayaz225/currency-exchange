@@ -13,7 +13,5 @@ We assumed that you will be using *PostgreSQL* as a database server.
 ## 2. Run the project
 To run this project, simply run model_view_controller.py
 
-Constraints
--   Use 
+Constraints  
 - [https://currencylayer.com](https://currencylayer.com/) you'll have to sign up for a free account to get the API key
-
